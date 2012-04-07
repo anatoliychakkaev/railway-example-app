@@ -1,0 +1,9 @@
+<div class="page-header"><h1>Edit chapter</h1></div>
+
+<% form_for(chapter, {action: path_to.book_chapter(book, chapter), method: 'PUT', id: "chapter_form", class: 'form-horizontal'}, function (form) { %>
+    <%- partial('chapters/form.ejs', {locals: {form: form, chapter: chapter}}) %>
+    <div class="form-actions">
+        <%- form.submit('<i class="icon-ok icon-white"></i> Update chapter', {class: 'btn btn-primary'}) %> or
+        <%- link_to('Cancel', path_to.book_chapter(book, chapter), {class: 'btn'}) %>
+    </div>
+<% });%>

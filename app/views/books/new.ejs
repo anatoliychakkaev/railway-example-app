@@ -1,0 +1,11 @@
+<div class="page-header">
+    <h1>New book</h1>
+</div>
+
+<% form_for(book, {action: path_to.books, method: 'POST', id: "book_form", class: 'form-horizontal'}, function (form) { %>
+    <%- partial('books/form.ejs', {locals: {form: form, book: book}}) %>
+    <div class="form-actions">
+        <%- form.submit('<i class="icon-ok icon-white"></i> Create book', {class: 'btn btn-primary'}) %> or
+        <%- link_to('Cancel', path_to.books, {class: 'btn'}) %>
+    </div>
+<% });%>
