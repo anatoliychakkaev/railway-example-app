@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1>Index of chapter</h1>
+  <h1>Table of contents</h1>
 </div>
 
 <div class="row">
@@ -14,14 +14,14 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Chapter</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% chapters.forEach(function (chapter) { %>
                         <tr>
-                            <td><strong><%- link_to('chapter #' + chapter.id, path_to.book_chapter(params.book_id, chapter)) %></strong></td>
+                            <td><strong><%- link_to(chapter, path_to.book_chapter(params.book_id, chapter)) %></strong></td>
                             <td>
                                 <%- link_to('<i class="icon-edit"></i> Edit', path_to.edit_book_chapter(params.book_id, chapter), {class: 'btn btn-mini'}) %>
                                 <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.book_chapter(params.book_id, chapter), {class: 'btn btn-mini btn-danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>        

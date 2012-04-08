@@ -1,4 +1,4 @@
-{ "name": "libr"
+{ "name": "example-railway-app"
 , "version": "0.0.1"
 , "engines": ["node >= 0.4.0"]
 , "main": "server.js"

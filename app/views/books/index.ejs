@@ -24,6 +24,7 @@
                             <td><strong><%- linkTo(book.name, path_to.book(book)) %></strong></td>
                             <td>
                                 <%- link_to('<i class="icon-edit"></i> Edit', path_to.edit_book(book), {class: 'btn btn-mini'}) %>
+                                <%- link_to('Read', path_to.book_chapters(book), {class: 'btn btn-mini'}) %>
                                 <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.book(book), {class: 'btn btn-mini btn-danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>        
                             </td>
                         </tr>
