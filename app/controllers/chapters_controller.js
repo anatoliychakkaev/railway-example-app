@@ -1,6 +1,5 @@
 load('application');
 
-before(loadBook);
 before(loadChapter, {only: ['show', 'edit', 'update', 'destroy']});
 
 action('new', function () {
@@ -10,7 +9,7 @@ action('new', function () {
 });
 
 action(function create() {
-    this.book.chapters.create(req.body.Chapter, function (err, chapter) {
+    Chapter.create(req.body.Chapter, function (err, chapter) {
         if (err) {
             flash('error', 'Chapter can not be created');
             render('new', {
@@ -19,14 +18,14 @@ action(function create() {
             });
         } else {
             flash('info', 'Chapter created');
-            redirect(path_to.book_chapters(this.book));
+            redirect(path_to.book_chapters(params.book_id));
         }
-    }.bind(this));
+    });
 });
 
 action(function index() {
     this.title = 'Chapters index';
-    this.book.chapters(function (err, chapters) {
+    Chapter.all(function (err, chapters) {
         render({
             chapters: chapters
         });
@@ -47,7 +46,7 @@ action(function update() {
     this.chapter.updateAttributes(body.Chapter, function (err) {
         if (!err) {
             flash('info', 'Chapter updated');
-            redirect(path_to.chapter(this.chapter));
+            redirect(path_to.book_chapter(params.book_id, this.chapter));
         } else {
             flash('error', 'Chapter can not be updated');
             this.title = 'Edit chapter details';
@@ -63,29 +62,17 @@ action(function destroy() {
         } else {
             flash('info', 'Chapter successfully removed');
         }
-        send("'" + path_to.chapters + "'");
+        send("'" + path_to.book_chapters(params.book_id) + "'");
     });
 });
 
 function loadChapter() {
-    this.book.chapters.find(params.id, function (err, chapter) {
+    Chapter.find(params.id, function (err, chapter) {
         if (err) {
-            console.log(err);
-            redirect(path_to.book_chapters(this.book));
+            redirect(path_to.book_chapters(params.book_id));
         } else {
             this.chapter = chapter;
             next();
         }
     }.bind(this));
 }
-
-function loadBook() {
-    var self = this;
-    Book.find(params.book_id, function (err, book) {
-        if (err) return next(err);
-        if (!book) return next(new Error(404));
-        self.book = book;
-        next();
-    });
-}
-

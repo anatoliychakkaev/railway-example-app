@@ -6,6 +6,9 @@ define('User', function () {
 
 var Book = describe('Book', function () {
     property('name', String);
-});var Chapter = describe('Chapter', function () {
+});
+
+var Chapter = describe('Chapter', function () {
     property('title', String);
 });
+

@@ -10,8 +10,8 @@
 </table>
 
 <div class="well">
-    <%- link_to('<i class="icon-edit icon-white"></i> Edit', path_to.edit_book_chapter(book, chapter), {class: 'btn btn-primary'}) %>
-    <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.book_chapter(book, chapter), {class: 'btn btn-danger', method: 'delete', remote: true, jsonp: '(function (u) { location.href = u; })'}) %>
+    <%- link_to('<i class="icon-edit icon-white"></i> Edit', path_to.edit_book_chapter(params.book_id, chapter), {class: 'btn btn-primary'}) %>
+    <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.book_chapter(params.book_id, chapter), {class: 'btn btn-danger', method: 'delete', remote: true, jsonp: '(function (u) { location.href = u; })'}) %>
     or
-    <%- link_to('Back to index', path_to.book_chapters(book)) %>
+    <%- link_to('Back to index', path_to.book_chapters(params.book_id)) %>
 </div>

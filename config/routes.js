@@ -1,4 +1,5 @@
 exports.routes = function (map) {
+    map.resources('chapters');
     map.resources('books', function (book) {
         book.resources('chapters');
     });

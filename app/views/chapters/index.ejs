@@ -1,10 +1,10 @@
 <div class="page-header">
-  <h1>Chapters of Book <%- book.title || book.name %></h1>
+    <h1>Index of chapter</h1>
 </div>
 
 <div class="row">
     <div class="span12">
-        <p><%- link_to('<i class="icon-plus icon-white"></i> New chapter', path_to.new_book_chapter(book), {class: 'btn btn-primary'}) %></>
+        <p><%- link_to('<i class="icon-plus icon-white"></i> New chapter', path_to.new_book_chapter(params.book_id), {class: 'btn btn-primary'}) %></>
     </div>
 </div>
 
@@ -19,12 +19,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% chapters.forEach(function (chapter, i) { %>
+                    <% chapters.forEach(function (chapter) { %>
                         <tr>
-                            <td><strong><%- link_to('chapter #' + (i + 1) + '. ' + chapter.title, path_to.book_chapter(book, chapter)) %></strong></td>
+                            <td><strong><%- link_to('chapter #' + chapter.id, path_to.book_chapter(params.book_id, chapter)) %></strong></td>
                             <td>
-                                <%- link_to('<i class="icon-edit"></i> Edit', path_to.edit_book_chapter(book, chapter), {class: 'btn btn-mini'}) %>
-                                <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.book_chapter(book, chapter), {class: 'btn btn-mini btn-danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>        
+                                <%- link_to('<i class="icon-edit"></i> Edit', path_to.edit_book_chapter(params.book_id, chapter), {class: 'btn btn-mini'}) %>
+                                <%- link_to('<i class="icon-remove icon-white"></i> Delete', path_to.book_chapter(params.book_id, chapter), {class: 'btn btn-mini btn-danger', method: 'delete', remote: true, jsonp: '(function (u) {location.href = u;})'}) %>        
                             </td>
                         </tr>
                     <% }); %>        
