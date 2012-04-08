@@ -1,5 +1,6 @@
 load('application');
 
+before(loadBook);
 before(loadChapter, {only: ['show', 'edit', 'update', 'destroy']});
 
 action('new', function () {
@@ -9,7 +10,7 @@ action('new', function () {
 });
 
 action(function create() {
-    Chapter.create(req.body.Chapter, function (err, chapter) {
+    this.book.chapters.create(req.body.Chapter, function (err, chapter) {
         if (err) {
             flash('error', 'Chapter can not be created');
             render('new', {
@@ -25,7 +26,7 @@ action(function create() {
 
 action(function index() {
     this.title = 'Chapters index';
-    Chapter.all(function (err, chapters) {
+    this.book.chapters(function (err, chapters) {
         render({
             chapters: chapters
         });
@@ -66,8 +67,15 @@ action(function destroy() {
     });
 });
 
+function loadBook() {
+    Book.find(params.book_id, function (err, book) {
+        this.book = book;
+        next();
+    }.bind(this));
+}
+
 function loadChapter() {
-    Chapter.find(params.id, function (err, chapter) {
+    this.book.chapters.find(params.id, function (err, chapter) {
         if (err) {
             redirect(path_to.book_chapters(params.book_id));
         } else {
