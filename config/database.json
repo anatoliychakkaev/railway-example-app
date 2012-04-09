@@ -1,5 +1,7 @@
 { "development":
-  { "driver":   "redis"
+  { "driver":   "mysql"
+  , "database": "myapp_test"
+  , "username": "root"
   }
 , "test":
   { "driver":   "memory"

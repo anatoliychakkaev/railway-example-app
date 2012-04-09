@@ -6,3 +6,8 @@ Chapter.prototype.toString = function () {
     return this.title;
 };
 
+Chapter.beforeUpdate = function (done, obj) {
+    obj.updatedAt = new Date;
+    done();
+};
+

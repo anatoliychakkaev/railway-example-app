@@ -10,5 +10,6 @@ var Book = describe('Book', function () {
 
 var Chapter = describe('Chapter', function () {
     property('title', String);
+    property('updatedAt', Date);
 });
 
