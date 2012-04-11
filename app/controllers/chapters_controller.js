@@ -1,4 +1,5 @@
 load('application');
+layout('application');
 
 before(loadBook);
 before(loadChapter, {only: ['show', 'edit', 'update', 'destroy']});
@@ -76,11 +77,12 @@ function loadBook() {
 
 function loadChapter() {
     this.book.chapters.find(params.id, function (err, chapter) {
-        if (err) {
-            redirect(path_to.book_chapters(params.book_id));
+        if (err || !chapter) {
+            return next(new Error(404));
         } else {
             this.chapter = chapter;
             next();
         }
     }.bind(this));
 }
+
