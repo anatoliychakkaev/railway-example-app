@@ -14,4 +14,35 @@ railway seed
 node server.js
 ```
 
+## to get started with MongoDB and MongoHQ
+
+```
+git clone git://github.com/anatoliychakkaev/railway-example-app.git lib-app
+cd lib-app
+npm install -l
+npm install mongodb
+npm install mongoose
+```
+
+Then modify 'database.json' as follows;
+
+```
+{ "development":
+{
+   "driver":   "mongoose",
+   "url":      "mongodb://<user>:<pass>@<server>.mongohq.com:<port>/<db_name>"
+}, "test":
+  { "driver":   "memory"
+  }
+}
+```
+(replace all entires with <abc> ecapsulation)
+MongoHQ provides all the details in regard to connection string.
+
+Now finally run
+```
+node server.js
+```
+
+Nested resources in action!!
 
